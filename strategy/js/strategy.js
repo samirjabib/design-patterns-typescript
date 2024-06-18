@@ -118,9 +118,24 @@ class DetailListStrategy {
 }
 
 
+
+class ListWithImageStrategy {
+    show(data, element) {
+        element.innerHTML = data.reduce((ac, i) => {
+            return ac + `<div><h2>${i.name}</h2><p>${i.country}</p>
+            <p>${i.info}</p>
+            <img widht="10%" src="${i.img}"/>
+            <hr></div>`
+        }, "")
+    }
+}
+
+
+
 const strategies = [
     new ListStrategy(),
-    new DetailListStrategy()
+    new DetailListStrategy(),
+    new ListWithImageStrategy(),
 ]
 
 const info = new InfoContext(new ListStrategy(), data, content)
