@@ -68,33 +68,41 @@ console.log(total);
 //clase
 
 class Drink {
-  name: string;
+  private name: string;
   constructor(name: string) {
     this.name = name;
   }
 
-  info() {
+  info(): string {
     return "la bebida es :" + this.name;
   }
 }
 
 const drink = new Drink("agua");
 
-console.log(drink.name);
-
 //herencia
-class Beer extends Drink {
-  alcohol: number;
-  constructor(name: string, alcohol: number) {
+
+interface Product {
+  price: number;
+  getPrice(): string;
+}
+
+class Beer extends Drink implements Product {
+  private alcohol: number;
+  price: number;
+  constructor(name: string, alcohol: number, price: number) {
     super(name);
     this.alcohol = alcohol;
+    this.price = price;
   }
 
-  info() {
+  info(): string {
     return super.info() + " " + this.alcohol;
+  }
+
+  getPrice(): string {
+    return "$" + this.price;
   }
 }
 
-const beer = new Beer("erginer", 9.5);
-
-console.log(beer);
+const beer = new Beer("erginer", 9.5, 10);
