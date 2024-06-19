@@ -29,10 +29,15 @@ class Observer {
 const s = new Subject()
 
 const o1 = new Observer(data => console.log('hola soy el observador uno', data))
+const o2 = new Observer(data => div1.innerHTML = data)
+const o3 = new Observer(data => div2.innerHTML = data.split("").reverse().join(""))
 
 
 s.subscribe(o1)
+s.subscribe(o2)
+s.subscribe(o3)
 
 function change() {
     s.notify(myText.value)
 }
+
